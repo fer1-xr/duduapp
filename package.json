@@ -1,0 +1,16 @@
+{
+  "name": "conciliacion-excel-service",
+  "version": "1.0.0",
+  "description": "Microservicio que convierte el JSON de discrepancias (RG90 vs Libro Interno) en un archivo Excel real para Pacioli",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "exceljs": "^4.4.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
