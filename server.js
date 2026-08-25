@@ -16,7 +16,7 @@ app.post("/generar-excel", async (req, res) => {
 
     // Bubble puede mandar el array directo, o como { discrepancies: [...] }
     const body = req.body;
-    const discrepancias = Array.isArray(body) ? body : body.discrepancias || body.discrepancies || [];
+    const discrepancias = body.discrepancias || body.discrepancies || (Array.isArray(body) ? body : []);
 
     if (!Array.isArray(discrepancias)) {
       return res.status(400).json({ error: "Se esperaba un array de discrepancias" });
