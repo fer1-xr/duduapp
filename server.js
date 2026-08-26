@@ -13,7 +13,7 @@ app.post("/generar-excel", async (req, res) => {
     if (clave !== API_KEY) {
       return res.status(401).json({ error: "No autorizado" });
     }
-
+const discrepancias = req.body.discrepancias || req.body.discrepancies || (Array.isArray(req.body) ? req.body : []);
     // Bubble puede mandar el array directo, o como { discrepancies: [...] }
     const body = req.body;
     const discrepancias = body.discrepancias || body.discrepancies || (Array.isArray(body) ? body : []);
