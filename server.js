@@ -15,8 +15,11 @@ app.post("/generar-excel", async (req, res) => {
     }
 const discrepancias = req.body.discrepancias || req.body.discrepancies || (Array.isArray(req.body) ? req.body : []);
     // Bubble puede mandar el array directo, o como { discrepancies: [...] }
-    const body = req.body;
-    const discrepancias = body.discrepancias || body.discrepancies || (Array.isArray(body) ? body : []);
+ const sessionId = req.query.session;
+const bubbleUrl = `https://duduapp.bubbleapps.io/api/1.1/obj/conciliationsession/${sessionId}`;
+const bubbleResp = await fetch(bubbleUrl);
+const bubbleData = await bubbleResp.json();
+const discrepancias = JSON.parse(bubbleData.response.reporte_json || "[]");
 
     if (!Array.isArray(discrepancias)) {
       return res.status(400).json({ error: "Se esperaba un array de discrepancias" });
